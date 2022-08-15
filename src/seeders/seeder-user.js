@@ -14,8 +14,7 @@ module.exports = {
       lastName: 'NGUYEN',
       password: '123456',
       gender: 1,
-      typeRole: 'ROLL',
-      keyRole: 'R1',
+      roleId: 'admin',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

@@ -1,7 +1,11 @@
 
 
+// npm install --save bcrypt@5.0.1           --> hask password 
 // chú ý: khi kết nối dữ liệu cần sử dụng hàm 'async' , 'await' để đảm bảo connect là lấy đc data mới làm tiếp cv
 import db from '../models/index'; // index chứa các model
+import CRUDservice from '../services/CRUDService';
+
+
 let getHomePage = async (req, res) => {
     try {
         let data = await db.User.findAll()
@@ -21,13 +25,19 @@ let getHomePage = async (req, res) => {
 let getAboutPage = (req, res) => {
     return res.render('test/about.ejs');
 }
-let getCRUDPage = (req, res) => {
-    // return res.send('get CRUD hoi dan IT')
+let getCRUD = (req, res) => {
     return res.render('crud.ejs');
 }
 
+let postCRUD = async (req, res) => {
+    // console.log(req.body);
+    let message = await CRUDservice.createNewUser(req.body)
+    return res.send('post crud from server');
+    console.log(message);
+}
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
-    getCRUDPage: getCRUDPage
+    getCRUD: getCRUD,
+    postCRUD: postCRUD,
 }
